@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Build Docker image
+      run: docker buildx build --platform linux/amd64,linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/comentarios:latest .
+
+    - name: Push Docker image
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/comentarios:latest
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          docker stop comentarios || true
+          docker rm comentarios || true
+          docker pull ${{ secrets.DOCKER_USERNAME }}/comentarios:latest
+          docker run -d --name comentarios -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/comentarios:latest
