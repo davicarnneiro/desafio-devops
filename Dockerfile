@@ -1,24 +1,16 @@
-# Use the official Python image
 FROM python:3.9-slim
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# Set the working directory in the container
+# Define o diretório de trabalho na imagem
 WORKDIR /app
 
-# Copy the requirements file
-COPY app/requirements.txt requirements.txt
+# Copia o arquivo requirements.txt para o diretório de trabalho
+COPY requirements.txt .
 
-# Install dependencies
+# Instala as dependências
 RUN pip install -r requirements.txt
 
-# Copy the rest of the application code
+# Copia o restante do código para o diretório de trabalho
 COPY . .
 
-# Expose port 5000
-EXPOSE 5000
-
-# Command to run the application
+# Comando para iniciar a aplicação
 CMD ["python", "run.py"]
