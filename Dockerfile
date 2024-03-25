@@ -1,3 +1,4 @@
+# Use a imagem base do Python
 FROM python:3.9-slim
 
 # Define o diretório de trabalho na imagem
@@ -7,10 +8,12 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Instala as dependências
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia o restante do código para o diretório de trabalho
+# Copia todo o código para o diretório de trabalho
 COPY . .
 
 # Comando para iniciar a aplicação
-CMD ["python", "run.py"]
+CMD ["python", "api.py"]
+
+
