@@ -10,8 +10,8 @@ COPY requirements.txt .
 # Instala as dependências
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia todo o código para o diretório de trabalho
-COPY . .
+# Copia o arquivo api.py para o diretório de trabalho
+COPY api.py .
 
 # Comando para iniciar a aplicação
 CMD ["python", "api.py"]
