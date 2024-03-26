@@ -17,12 +17,13 @@ jobs:
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/comentarios:latest ./app
+      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/comentarios:latest .
 
     - name: Push Docker image
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/comentarios:latest
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
