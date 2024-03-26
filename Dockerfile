@@ -4,11 +4,8 @@ FROM python:3.9-slim
 # Define o diretório de trabalho na imagem
 WORKDIR /app
 
-# Copia os arquivos necessários para o diretório de trabalho
-COPY app/api.py .
-
-# Copia o arquivo de requisitos
-COPY app/requirements.txt .
+# Copia todo o conteúdo do diretório 'app' local para o diretório de trabalho no contêiner
+COPY app/ .
 
 # Instala as dependências
 RUN pip install --no-cache-dir -r requirements.txt
