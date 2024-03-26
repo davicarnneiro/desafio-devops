@@ -2,10 +2,9 @@ version: '3.8'
 
 services:
   comentarios-api:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     ports:
       - "5000:5000"
     volumes:
-      - ./app:/app  # Mapeia o diretório 'app' local para o diretório '/app' no contêiner
+      - ./app:/app
+
