@@ -12,7 +12,7 @@ COPY api.py .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Comando para iniciar a aplicação
-CMD ["gunicorn", "--log-level", "debug", "api:app"]
+CMD ["python", "api.py"]
 
 
 
