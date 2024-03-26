@@ -1,0 +1,8 @@
+all:
+  hosts:
+    servidor-web:
+      ansible_host: 54.153.23.232     # Substitua pelo seu IP da instância EC2
+  vars:
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: ~/Documentos/devops.pem        # Indica em qual diretorio esta a chave para acesso SSH
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'       # Não solicita confirmação para acesso SSH

@@ -1,0 +1,44 @@
+---
+- hosts: 
+    - servidor-web
+    # - ec2_instance02
+
+  become: yes   # Define que as tarefas sejam executadas com privilégios de superusuário (geralmente usando sudo)
+  tasks:
+    - name: Atualizar cache de pacotes
+      apt:
+        update_cache: yes
+
+    - name: Instalar GnuPG
+      apt:
+        name: gpg
+        state: present
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+      become: yes
+
+    - name: Baixar script de instalação do Docker
+      get_url:
+        url: https://get.docker.com
+        dest: /tmp/install_docker.sh
+        mode: 0755       # Define permissão de leitura, escrita e execução
+
+    - name: Executar script de instalação do Docker
+      shell: /tmp/install_docker.sh
+      become: yes
+
+    - name: Adicionar usuário ao grupo docker
+      become: yes 
+      user:
+        name: ubuntu  # Usuário na sua instância EC2
+        groups: docker
+        append: yes
+
+    
+
+  
+  
+
