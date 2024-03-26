@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copia os arquivos necessários para o diretório de trabalho
-COPY requirements.txt .
+COPY /app/requirements.txt .
 COPY api.py .
 
 # Instala as dependências
