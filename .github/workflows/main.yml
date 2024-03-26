@@ -3,7 +3,10 @@ name: Docker Build and Deploy
 on:
   push:
     branches:
-      - main  # Defina aqui os ramos que deseja construir e implantar
+      - main  # Defina a branch que deseja monitorar para push
+  pull_request:
+    branches:
+      - main  # Defina a branch que deseja monitorar para pull request
 
 jobs:
   build:
