@@ -33,7 +33,7 @@ jobs:
         push: true
         tags: |
           davicarneiro/comentarios-api:${{github.run_number}}
-          davicarneiro/comentarios-api:v1
+          davicarneiro/comentarios-api:latest
           
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@0.16.1
