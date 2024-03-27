@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Instale as dependências
-RUN pip install -r requirements.txt
+RUN pip install -r ./requirements.txt
 
 # Exponha a porta em que sua aplicação Flask está sendo executada
 EXPOSE 5000
