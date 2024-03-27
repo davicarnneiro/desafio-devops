@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: comentarios-api
-        image: davicarneiro/comentarios:latest
+        image: davicarneiro/comentarios:v1
         ports:
         - containerPort: 5000
 ---
