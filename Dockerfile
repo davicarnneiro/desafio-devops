@@ -14,4 +14,4 @@ RUN pip install -r app/requirements.txt
 EXPOSE 5000
 
 # Comando para executar a aplicação quando o contêiner for iniciado
-CMD ["python", "app/api.py"]
+CMD ["python", "api.py"]
