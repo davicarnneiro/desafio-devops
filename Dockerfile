@@ -5,13 +5,13 @@ FROM python:3.9
 WORKDIR /app
 
 # Copie os arquivos de aplicação para o diretório de trabalho
-COPY . .
+COPY app/ ./
 
 # Instale as dependências
-RUN pip install -r app/requirements.txt
+RUN pip install -r requirements.txt
 
 # Exponha a porta em que sua aplicação Flask está sendo executada
 EXPOSE 5000
 
-# Comando para executar a aplicação quando o contêiner for iniciado
-CMD ["python", "api.py"]
+# Comando para iniciar a aplicação usando Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "api:app"]
