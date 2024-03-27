@@ -13,7 +13,7 @@ FROM python:3.9
 WORKDIR /app
 
 # Copie os arquivos de aplicação para o diretório de trabalho
-COPY . /app
+COPY app/ ./
 
 # Instale as dependências
 RUN pip install -r requirements.txt
