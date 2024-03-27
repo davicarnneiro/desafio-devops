@@ -1,11 +1,3 @@
-# FROM python:3.9-slim
-# WORKDIR /app
-# COPY app/requirements.txt ./
-# COPY app/api.py ./
-# RUN pip install --no-cache-dir -r requirements.txt
-# CMD ["python", "api.py"]
-
-
 # Use a imagem base do Python
 FROM python:3.9
 
@@ -22,4 +14,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 
 # Comando para executar a aplicação quando o contêiner for iniciado
-CMD ["python", "app.py"]
+CMD ["python", "api.py"]

@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: comentarios-api
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: comentarios-api
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: comentarios-api
-        image: davicarneiro/comentarios:v1
+        image: davicarneiro/comentarios:latest
         ports:
         - containerPort: 5000
 ---
