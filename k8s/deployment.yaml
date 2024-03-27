@@ -1,30 +1,34 @@
+# deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: application-web
+  name: comentarios-api
 spec:
+  replicas: 3
   selector:
     matchLabels:
-      app: application-web
+      app: comentarios-api
   template:
     metadata:
       labels:
-        app: application-web
+        app: comentarios-api
     spec:
       containers:
-      - name: application-web
-        image: davicarneiro/application-web:v7
+      - name: comentarios-api
+        image: davicarneiro/comentarios:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 5000
 ---
+# service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: application-web
+  name: comentarios-api
 spec:
   selector:
-    app: application-web
+    app: comentarios-api
   ports:
-  - port: 80
-    targetPort: 8080
-  type: LoadBalancer
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer  # Use ClusterIP se estiver implantando localmente
